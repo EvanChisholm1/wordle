@@ -10,8 +10,8 @@ const red = (text: string) => `\x1b[31m${text}\x1b[0m`;
 const yellow = (text: string) => `\x1b[33m${text}\x1b[0m`;
 const green = (text: string) => `\x1b[32m${text}\x1b[0m`;
 
-function printValidity(guess: string) {
-    return guess
+const printValidity = (guess: string) =>
+    guess
         .split("")
         .map((x, i) =>
             x === correctChars[i]
@@ -21,7 +21,6 @@ function printValidity(guess: string) {
                 : x
         )
         .join(" ");
-}
 
 while (keepGoing()) {
     console.log("guesses left:", 5 - tries.length);
@@ -36,8 +35,8 @@ while (keepGoing()) {
     console.log(printValidity(guess));
 }
 
-if (tries.at(-1) === hiddenWord) {
-    console.log("congrats you win, the correct word is", green(hiddenWord));
-} else {
-    console.log("sorry you lost the correct word is", red(hiddenWord));
-}
+console.log(
+    tries.at(-1) === hiddenWord
+        ? `congrats you win, the correct word is ${green(hiddenWord)}`
+        : `sorry you lost the correct word is ${red(hiddenWord)}`
+);
