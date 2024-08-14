@@ -3,9 +3,6 @@ const hiddenWord = words[Math.floor(Math.random() * words.length)];
 const correctChars = hiddenWord.split("");
 const tries: string[] = [];
 
-const keepGoing = () =>
-    tries.length >= 5 || tries.at(-1) === hiddenWord ? false : true;
-
 const red = (text: string) => `\x1b[31m${text}\x1b[0m`;
 const yellow = (text: string) => `\x1b[33m${text}\x1b[0m`;
 const green = (text: string) => `\x1b[32m${text}\x1b[0m`;
@@ -22,7 +19,7 @@ const printValidity = (guess: string) =>
         )
         .join(" ");
 
-while (keepGoing()) {
+while (tries.length >= 5 || tries.at(-1) === hiddenWord ? false : true) {
     console.log("guesses left:", 5 - tries.length);
     const guess = prompt("enter a five letter word you would like to guess:")!;
 
